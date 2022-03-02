@@ -207,7 +207,7 @@ def get_config():
     if not os.path.exists(config.save_path):
         os.mkdir(config.save_path)
 
-    if config.task in ['test', 'Test', 'TEST']:
+    if config.task.lower() in ['test']:
         # folder path
         if not os.path.exists(config.test_path + '.meta'):
             raise ValueError(
@@ -218,7 +218,7 @@ def get_config():
         else:
             setattr(config, 'snr_range', np.arange(config.snr_range[0], config.snr_range[1], config.snr_range[2]))
 
-    if config.task in ['continue', 'Continue', 'CONTINUE']:
+    if config.task.lower() in ['continue']:
         # folder path
         if not os.path.exists(config.ckpt_path + '.meta'):
             raise ValueError(

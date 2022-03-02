@@ -122,11 +122,11 @@ def AJSCC(config):
         sess.run(tf.global_variables_initializer())
         sess.run(tf.local_variables_initializer())
 
-        if opt_task not in ['test', 'Test', 'TEST']:
+        if opt_task.lower() not in ['test']:
             train_noise_vars = 10. ** (-(config.snr + config.snr_train_offset) / 10.)
             test_noise_vars = 10. ** (-(config.snr + config.snr_test_offset) / 10.)
             # judge if or not to load / continue previous model
-            if opt_task in ['continue', 'Continue', 'CONTINUE']:
+            if opt_task.lower() in ['continue']:
                 CKPT_PATH = config.ckpt_path
                 saver.restore(sess, CKPT_PATH)
                 print('Continue training using saved model with CSNR {} dB...'.format(config.snr))

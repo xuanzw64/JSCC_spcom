@@ -152,7 +152,7 @@ class SOURCE:
             raise ValueError('Not support this source choice for now!')
 
     def _normal(self):
-        if self.config.task in ['test', 'Test', 'TEST']:
+        if self.config.task.lower() in ['test']:
             bs = self.config.bs_test
         else:
             bs = self.config.bs
@@ -160,7 +160,7 @@ class SOURCE:
         return np.random.normal(0., 1., size=(bs, dim))
 
     def _uniform(self):
-        if self.config.task in ['test', 'Test', 'TEST']:
+        if self.config.task.lower() in ['test']:
             bs = self.config.bs_test
         else:
             bs = self.config.bs

@@ -21,13 +21,13 @@ def main():
 
     print('Experiment with {} source, with BW k = {}, n = {}.'.format(config.src_dist, config.input_dim,
                                                                       config.output_dim))
-    if config.task in ['new', 'New', 'NEW', 'continue', 'Continue', 'CONTINUE']:
+    if config.task.lower() in ['new', 'continue']:
         for snr in config.snr_train:
             # set channel noise variance
             setattr(config, 'snr', snr)
             tf.reset_default_graph()
             AJSCC(config)
-    elif config.task in ['test', 'Test', 'TEST']:
+    elif config.task.lower() in ['test']:
         tf.reset_default_graph()
         AJSCC(config)
     else:
